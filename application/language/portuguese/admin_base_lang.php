@@ -208,7 +208,22 @@ $lang['users'] 			= "Utilizadores";
 	
 $lang['files'] 			= "Ficheiros";
 	$lang['manage_files'] 		= "Gerir Ficheiros";
-	
+$lang['projects'] = "projectos";	
+
+
+
+/*
+ * 
+ * 
+ * BUGS
+ * 
+ * 
+ */
+$lang['by'] 	= 'por';
+$lang['bug']	= 'bug';
+$lang['feature'] = 'feature';
+$lang['comment'] = 'comentar';
+
 	
 /* End of file admin_base.php */
 /* Location: ./application/language/portuguese/admin_base.php */

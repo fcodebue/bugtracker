@@ -20,44 +20,6 @@
 <script type="text/javascript" src="<?=base_url(); ?>public/backend/js/facebox.js"></script>
 <script type="text/javascript" src="<?=base_url(); ?>public/backend/js/jquery.datePicker.js"></script>
 <script type="text/javascript" src="<?=base_url(); ?>public/backend/js/jquery.date.js"></script>
-<script type="text/javascript" src="<?=base_url(); ?>public/backend/jscripts/tiny_mce/tiny_mce.js"></script>
-	
-
-<script type="text/javascript">
-	tinyMCE.init({
-		// General options
-		mode : "textareas",
-		theme : "advanced",
-
-		// Theme options Complete
-		//plugins : "safari,style,layer,table,save,advhr,advimage,advlink,iespell,insertdatetime,media,directionality,noneditable,nonbreaking,xhtmlxtras,wordcount",
-		//theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
-		//theme_advanced_buttons2 : "cut,copy,paste,pastetext,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,code,|,insertdate,inserttime,|,forecolor,backcolor",
-		//theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,iespell,media,cite,abbr,acronym,del,ins,|,visualchars,nonbreaking ",
-		// Theme options simple
-		plugins : "safari,advhr,advimage,advlink,iespell,media,directionality,noneditable,nonbreaking",
-		theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,blockquote,|,link,unlink,anchor,image",
-		theme_advanced_toolbar_location : "top",
-		theme_advanced_toolbar_align : "left",
-		theme_advanced_statusbar_location : "bottom",
-		theme_advanced_resizing : false,
-
-		// Example content CSS (should be your site CSS)
-		content_css : ".public/backend/tinymce/css/content.css",
-
-		// Drop lists for link/image/media/template dialogs
-		template_external_list_url : "./public/backend/tinymce/lists/template_list.js",
-		external_link_list_url : "./public/backend/tinymce/lists/link_list.js",
-		external_image_list_url : "./public/backend/tinymce/lists/image_list.js",
-		media_external_list_url : "./public/backend/tinymce/lists/media_list.js",
-
-		// Replace values for the template plugin
-		template_replace_values : {
-			username : "Some User",
-			staffid : "991234"
-		}
-	});
-</script>
 <!--[if IE]><script type="text/javascript" src="<?=base_url(); ?>public/backend/js/jquery.bgiframe.js"></script><![endif]-->
 <!-- Internet Explorer .png-fix -->
 <!--[if IE 6]>

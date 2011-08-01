@@ -26,7 +26,13 @@ class Manage extends CI_Controller {
 		}
 	}
 	
-	public function index(){	
+	public function index(){
+
+		//Load dependencies
+		$this->load->model('admin/projects_model');
+		
+		$data['projects'] = $this->projects_model->GetProjects();
+		
 		$data['main_content'] = 'admin/home_view';
 		$this->load->view('admin/template/template', $data);
 	}

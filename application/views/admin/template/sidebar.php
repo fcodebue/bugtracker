@@ -19,42 +19,18 @@
 					<?=anchor('admin/manage', $this->lang->line('dashboard'), $dashboard); ?>     
 				</li>
 				<li> 
-				<?php if(isset($current_page) && $current_page == 'articles'):?>
-					<?php $articles = array('class' => 'nav-top-item current');?>
+				<?php if(isset($current_page) && $current_page == 'issues'):?>
+					<?php $pjt = array('class' => 'nav-top-item current');?>
 				<?php else:?>
-					<?php $articles = array('class' => 'nav-top-item');?>
+					<?php $pjt = array('class' => 'nav-top-item');?>
 				<?php endif;?>
-					<?=anchor('', $this->lang->line('articles'), $articles); ?>
+					<?=anchor('', $this->lang->line('projects'), $pjt); ?>
 					<ul>
-						<li><?=anchor('admin/articles/add', $this->lang->line('add_article')); ?></li>
-						<li><?=anchor('admin/articles', $this->lang->line('view_articles')); ?></li>
+						<?php foreach ($projects as $project): ?>
+						<li><?=anchor("admin/issues/index/$project->idproject", $project->projectname); ?></li>
+						<?php endforeach;?>
 					</ul>
 				</li>
-				<li>
-				<?php if(isset($current_page) && $current_page == 'category'):?>
-					<?php $menus = array('class' => 'nav-top-item current');?>
-				<?php else: ?>
-					<?php $menus = array('class' => 'nav-top-item');?>
-				<?php endif;?>
-					<?=anchor('', $this->lang->line('categories'), $menus); ?>
-					<ul>
-						<li><?=anchor('admin/category/add', $this->lang->line('add_category')); ?></li>
-						<li><?=anchor('admin/category', $this->lang->line('view_categories')); ?></li>
-					</ul>
-				</li>
-				<li>
-				<?php if(isset($current_page) && $current_page == 'menus'):?>
-						<?php $menus = array('class' => 'nav-top-item current');?>
-				<?php else: ?>
-						<?php $menus = array('class' => 'nav-top-item');?>
-				<?php endif;?>
-					<?=anchor('', $this->lang->line('menus'), $menus); ?>
-					<ul>
-						<li><?=anchor('admin/menus/add', $this->lang->line('add_menu')); ?></li>
-						<li><?=anchor('admin/menus', $this->lang->line('view_menus')); ?></li>
-					</ul>
-				</li>
-				
 				<li>
 					<?php if(isset($current_page) && $current_page == 'users'):?>
 						<?php $users = array('class' => 'nav-top-item current');?>
@@ -65,18 +41,6 @@
 					<ul>
 						<li><?=anchor('admin/users/add', $this->lang->line('add_user')); ?></li>
 						<li><?=anchor('admin/users/', $this->lang->line('view_users')); ?></li>
-					</ul>
-				</li>
-				
-				<li>
-					<?php if(isset($current_page) && $current_page == 'files'):?>
-						<?php $files = array('class' => 'nav-top-item current');?>
-					<?php else:?>
-						<?php $files = array('class' => 'nav-top-item');?>
-					<?php endif;?>
-						<?=anchor('', $this->lang->line('files'), $files); ?>
-					<ul>
-						<li><?=anchor('admin/files/', $this->lang->line('manage_files')); ?></li>
 					</ul>
 				</li>
 			</ul> <!-- End #main-nav -->	
