@@ -27,7 +27,14 @@
 					<?=anchor('', $this->lang->line('projects'), $pjt); ?>
 					<ul>
 						<?php foreach ($projects as $project): ?>
-						<li><?=anchor("admin/issues/index/$project->idproject", $project->projectname); ?></li>
+							<?php 
+								if($active_project == $project->idproject){ 
+									$atribut = array('class' => 'current'); 
+								}else{
+									$atribut = array();
+								} 
+							?>
+						<li><?=anchor("admin/issues/index/$project->idproject", $project->projectname, $atribut); ?></li>
 						<?php endforeach;?>
 					</ul>
 				</li>

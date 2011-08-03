@@ -65,12 +65,13 @@ class Issues_model extends CI_Model{
 	function GetIssues($options = array()) {
 		
 		//required Values
-		if(!$this->_required(
-			array('idproject'),
-			$options
-		)) return false;
-		
-		
+		if(!isset($options['idissue'])){
+			if(!$this->_required(
+				array('idproject'),
+				$options
+			)) return false;
+		}
+
 		// QUALIFICATION
 		if (isset($options['idissue']))
 			$this->db->where('idissue', $options['idissue']);		
@@ -90,17 +91,18 @@ class Issues_model extends CI_Model{
 		if(!isset($options['issuestatus'])) $this->db->where('issuestatus !=', 'deleted');
 		
 		// LIMIT OFFSET
-		if (isset($options['limit']) && isset($options['offset']))
+		if (isset($options['limit']) && isset($options['offset'])){
 			$this->db->limit($options['limit'], $options['offset']);
-		elseif (isset($options['limit']))
+		}
+		elseif (isset($options['limit'])){
 			$this->db->limit($options['limit']);
-			
+		}
 		// SORT
 		if (isset($options['sortBy']) && isset($options['sortDirection']))
 			$this->db->order_by($options['sortBy'], $options['sortDirection']);
 		
-
 		$query = $this->db->get('issues');
+		
 		
 		if(isset($options['count'])) return $query->num_rows();
 		

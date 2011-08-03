@@ -61,16 +61,46 @@
 							<tbody>
 								<?php foreach ($active_issues as $issue) { ?>
 									<tr>
-										<?php if($issue->issuetype == 'bug'){ ?><td class="bugid"><span class="idbug"><?php }elseif($issue->issuetype == 'feature'){ ?><td class="bugid"><span class="idfeature"><?php } ?><?php echo $issue->idissue;?></span></td>
-										<td class="bugid"><strong><?php echo $issue->issuetitle; ?></strong><br/> <?php echo $issue->issueintro; ?><br/>
-										<small class="extra-info"><?php echo $this->lang->line('by');?>: 
+										<?php if($issue->issuetype == 'bug'){ ?>
+											<td class="bugid"><span class="idbug">
+										<?php }elseif($issue->issuetype == 'feature'){ ?>
+											<td class="bugid">
+												<span class="idfeature"><?php } ?>
+													<?php echo $issue->idissue;?>
+												</span>
+											</td>
+										<td class="bugid">
+											<strong>
+												<?php echo utf8_decode($issue->issuetitle); ?>
+											</strong><br/> 
+											<?php echo utf8_decode($issue->issueintro); ?><br/>
+										<small class="extra-info">
+											<?php echo $this->lang->line('by');?>: 
 										<span class="user-name">
-											Clt. Lucia Silva
-										</span> &#149; <span class="date"><?php echo $issue->last_update; ?></span> &#149; 
-										<?php if($issue->issuetype == 'bug'){ ?><span class="bug"><?php echo $this->lang->line('bug'); ?></span><?php }elseif($issue->issuetype == 'feature'){ ?><span class="feature"><?php echo $this->lang->line('feature'); ?></span><?php } ?>			
-										<span class="important"> &#149; <?php $atributs = array('class' => 'comment');?> 
-											<?php echo anchor("issue/comment/$issue->idissue", $this->lang->line('comment'), $atributs); ?>
-										</span></small>
+											<?php
+											foreach($users as $user){
+												if($user->iduser == $issue->iduser){
+													echo $user->name . " " . $user->surname;
+												}
+											} 
+											?>
+										</span> &#149; <span class="date">
+											<?php echo $issue->last_update; ?>
+										</span> &#149; 
+										<?php if($issue->issuetype == 'bug'){ ?>
+												<span class="bug">
+													<?php echo $this->lang->line('bug'); ?>
+												</span><?php }
+											elseif($issue->issuetype == 'feature'){ ?>
+												<span class="feature">
+													<?php echo $this->lang->line('feature'); ?>
+												</span>
+											<?php } ?>			
+										<span class="important"> &#149; 
+											<?php $atributs = array('class' => 'comment');?> 
+											<?php echo anchor("admin/issues/comment/$issue->idissue", $this->lang->line('comment'), $atributs); ?>
+										</span>
+										</small>
 										</td>
 									</tr>
 								<?php }?>

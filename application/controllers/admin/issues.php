@@ -37,29 +37,71 @@ class Issues extends CI_Controller {
 		$this->load->model('admin/issues_model');
 		$this->load->model('admin/projects_model');
 		
+		/*
 		$perpage = 10;
 		
-		$config['base_url'] 		= base_url() . 'index.php/admin/issues/index/' . $idproject;
-		$config['per_page']			= $perpage;
-		$config['uri_segment']  	= 5;
-		$config['first_link'] 		= true;
-		$config['last_link'] 		= true;
-		$config['next_link'] 		= $this->lang->line('next').' >>';
-		$config['prev_link'] 		= '<< '.$this->lang->line('previous');
-		$config['anchor_class']		= "class='number' ";
+		$config_open['base_url'] 	= base_url() . 'index.php/admin/issues/index/' . $idproject;
+		$config_open['per_page']	= $perpage;
+		$config_open['uri_segment'] = 5;
+		$config_open['first_link'] 	= true;
+		$config_open['last_link'] 	= true;
+		$config_open['next_link'] 	= $this->lang->line('next').' >>';
+		$config_open['prev_link'] 	= '<< '.$this->lang->line('previous');
+		$config_open['anchor_class']= "class='number' ";
+		$config_open['total_rows']	= $this->issues_model->GetIssues(array('idproject' => $idproject, 'count' => TRUE));
 		
-		$config['total_rows']	 	= $this->issues_model->GetIssues(array('count' => true));
-		$data['active_issues'] 		= $this->issues_model->GetIssues(array('idproject' => $idproject, 'limit' => $perpage, 'offset' => $offset));	
-		$this->pagination->initialize($config); 		
-		$data['pagination'] = $this->pagination->create_links();
+		$this->pagination->initialize($config_open);
+
+		$data['pagination_open'] = $this->pagination->create_links($config_open);
 		
+		$data['active_issues'] 	= $this->issues_model->GetIssues(
+									array('idproject' => $idproject, 'limit' => $perpage, 'offset' => $offset, 'issuestatus' => 'open'));
+		*/
+		$data['active_issues'] 	= $this->issues_model->GetIssues(
+									array(
+										'idproject' => $idproject, 'issuestatus' => 'open', 
+										'sortBy' => 'idissue', 'sortDirection' => 'DESC'
+									));	
+		$data['user_types'] 	= array(
+									'client' 		=> 'Clt.',
+									'account' 		=> 'Acc.',
+									'manager'		=> 'Man',
+									'webdesigner' 	=> 'Web',
+									'webdeveloper'	=> 'Dev',
+									'designer'		=> 'Des');							
+		$data['users']			= $this->users_model->GetUsers();
 		$data['projects']		= $this->projects_model->GetProjects();
+		$data['active_project'] = $idproject;
 		$data['main_content'] 	= 'admin/listissues_view';
 		$data['action'] 		= 'activeissues';
 		$data['current_page'] 	= 'issues';
 		$this->load->view('admin/template/template', $data);
 		
 	}
+	
+	
+	public function comment( $idissue ) {
+		
+		//load dependencies
+		$this->load->library('pagination');
+		$this->load->model('admin/issues_model');
+		$this->load->model('admin/projects_model');
+		
+		
+		$data['issue'] 			= $this->issues_model->GetIssues(array('idissue' => $idissue));
+		$data['user']			= $this->users_model->GetUsers(array('iduser' => $data['issue']->iduser));
+		$data['projects']		= $this->projects_model->GetProjects();
+		$data['project']		= $this->projects_model->GetProjects(array('idproject' => $data['issue']->idproject));
+		$data['active_project']	= $data['project']->idproject;
+		$data['current_page'] 	= 'issues';
+		$data['main_content']	= 'admin/issue_view';
+		
+		$this->load->view('admin/template/template', $data);
+		
+		
+	}
+	
+	
 
 	
 }
